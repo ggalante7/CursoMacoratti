@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Tarefas.Services;
 using System;
+using System.Threading.Tasks;
+using Tarefas.Models;
 
 namespace Tarefas.Controllers
 {
@@ -12,12 +14,16 @@ namespace Tarefas.Controllers
                 _tarefaService = tarefaService;
             }
         //Lista de tarefas
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         { 
             //Obter itens da tarefa
-            var tarefas = _tarefaService.GetItemAsync();
-
-            return View(tarefas);
+            var tarefas = await _tarefaService.GetItemAsync();
+            
+            var model = new TarefaViewModel();
+            {
+                model.TarefaItens = tarefas;
+            }
+            return View(model);
         }
     }
 }
