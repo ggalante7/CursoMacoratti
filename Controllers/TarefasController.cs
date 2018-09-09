@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Tarefas
+namespace Tarefas.Controllers
 {
     public class TarefasController : Controller
     {
